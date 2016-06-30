@@ -26,6 +26,12 @@
 
 #include "pins_RAMPS_14_EFB.h"
 
+#ifdef BOARD_NAME
+  #undef BOARD_NAME
+#endif
+
+#define BOARD_NAME "Azteeg X3"
+
 //LCD Pins//
 
 #if ENABLED(VIKI2) || ENABLED(miniVIKI)

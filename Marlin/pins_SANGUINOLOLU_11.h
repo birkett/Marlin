@@ -28,6 +28,8 @@
   #error "Oops!  Make sure you have 'Sanguino' selected from the 'Tools -> Boards' menu."
 #endif
 
+#define BOARD_NAME         "Sanguinololu <1.2"
+
 #define X_STEP_PIN         15
 #define X_DIR_PIN          21
 #define X_STOP_PIN         18

@@ -26,6 +26,12 @@
 
 #include "pins_RAMPS_14.h"
 
+#ifdef BOARD_NAME
+  #undef BOARD_NAME
+#endif
+
+#define BOARD_NAME "Azteeg X3 Pro"
+
 #undef FAN_PIN
 #define FAN_PIN             6 //Part Cooling System
 

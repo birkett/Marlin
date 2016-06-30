@@ -532,5 +532,8 @@
 #ifndef MSG_INFO_PROTOCOL
   #define MSG_INFO_PROTOCOL                   "Protocol: " STRINGIFY(PROTOCOL_VERSION)
 #endif
+#ifndef MSG_INFO_BOARD
+  #define MSG_INFO_BOARD                      "Board:"
+#endif
 
 #endif // LANGUAGE_EN_H

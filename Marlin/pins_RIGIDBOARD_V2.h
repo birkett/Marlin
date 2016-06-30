@@ -26,6 +26,12 @@
 
 #include "pins_RIGIDBOARD.h"
 
+#ifdef BOARD_NAME
+  #undef BOARD_NAME
+#endif
+
+#define BOARD_NAME "RigidBoard V2"
+
 // I2C based DAC like on the Printrboard REVF
 #define DAC_STEPPER_CURRENT
 // Channels available for DAC, For Rigidboard there are 4

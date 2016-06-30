@@ -30,6 +30,8 @@
   #error "Oops!  Make sure you have 'Gen7' selected from the 'Tools -> Boards' menu."
 #endif
 
+#define BOARD_NAME "Gen7 v1.4"
+
 //x axis pins
 #define X_STEP_PIN 29
 #define X_DIR_PIN 28

@@ -28,6 +28,7 @@
 
 #define DEFAULT_MACHINE_NAME    "3Drag"
 #define DEFAULT_SOURCE_CODE_URL "http://3dprint.elettronicain.it/"
+#define BOARD_NAME              "3Drag"
 
 #undef Z_ENABLE_PIN
 #define Z_ENABLE_PIN       63
