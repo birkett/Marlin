@@ -190,6 +190,12 @@ uint8_t lcdDrawUpdate = LCDVIEW_CLEAR_CALL_REDRAW; // Set when the LCD needs to 
 
   /**
    * START_MENU generates the init code for a menu function
+   *
+   *   encoderLine is the position based on the encoder
+   *   currentMenuViewOffset is the top menu line to display
+   *   _drawLineNr is the index of the LCD line (0-3)
+   *   _lineNr is the menu item to draw and process
+   *   _menuItemNr is the index of each MENU_ITEM
    */
   #define START_MENU() do { \
     ENCODER_DIRECTION_MENUS(); \
@@ -242,6 +248,16 @@ uint8_t lcdDrawUpdate = LCDVIEW_CLEAR_CALL_REDRAW; // Set when the LCD needs to 
       _MENU_ITEM_PART_1(type, label, ## args); \
       _MENU_ITEM_PART_2(type, ## args); \
     } while(0)
+
+  #define STATIC_ITEM(label, args...) \
+    if (_menuItemNr == _lineNr) { \
+      if (encoderLine == _menuItemNr && _menuItemNr < LCD_HEIGHT - 1) \
+        encoderPosition += ENCODER_STEPS_PER_MENU_ITEM; \
+      if (lcdDrawUpdate) \
+        lcd_implementation_drawmenu_static(_drawLineNr, PSTR(label), ## args); \
+    } \
+    _menuItemNr++
+
 
   #if ENABLED(ENCODER_RATE_MULTIPLIER)
 
@@ -1878,21 +1894,21 @@ static void lcd_status_screen() {
    * "Printer Info" submenu
    *
    */
-  static void lcd_info_menu()
-  {
+  static void lcd_info_menu() {
     START_MENU();
-    MENU_ITEM(function, MSG_MARLIN,               lcd_return_to_status); // Marlin
-    MENU_ITEM(function, SHORT_BUILD_VERSION,      lcd_return_to_status); // x.x.x-Branch
-    MENU_ITEM(function, STRING_DISTRIBUTION_DATE, lcd_return_to_status); // YYYY-MM-DD HH:MM
-    MENU_ITEM(function, MACHINE_NAME,             lcd_return_to_status); // My3DPrinter
-    MENU_ITEM(function, WEBSITE_URL,              lcd_return_to_status); // www.my3dprinter.com
-    MENU_ITEM(function, MSG_INFO_EXTRUDERS,       lcd_return_to_status); // Extruders: 2
-    MENU_ITEM(function, MSG_INFO_BAUDRATE,        lcd_return_to_status); // Baud: 250000
-    MENU_ITEM(function, MSG_INFO_PROTOCOL,        lcd_return_to_status); // Protocol: 1.0
-	MENU_ITEM(function, MSG_INFO_BOARD,           lcd_return_to_status); // Board:
-	MENU_ITEM(function, BOARD_NAME,               lcd_return_to_status); // MyPrinterController
+    STATIC_ITEM(MSG_MARLIN);               // Marlin
+    STATIC_ITEM(SHORT_BUILD_VERSION);      // x.x.x-Branch
+    STATIC_ITEM(STRING_DISTRIBUTION_DATE); // YYYY-MM-DD HH:MM
+    STATIC_ITEM(MACHINE_NAME);             // My3DPrinter
+    STATIC_ITEM(WEBSITE_URL);              // www.my3dprinter.com
+    STATIC_ITEM(MSG_INFO_EXTRUDERS);       // Extruders: 2
+    STATIC_ITEM(MSG_INFO_BAUDRATE);        // Baud: 250000
+    STATIC_ITEM(MSG_INFO_PROTOCOL);        // Protocol: 1.0
+    STATIC_ITEM(MSG_INFO_BOARD);           // Board:
+    STATIC_ITEM(BOARD_NAME);               // MyPrinterController
     END_MENU();
   }
+  #endif // LCD_INFO_MENU
 
   /**
    *
