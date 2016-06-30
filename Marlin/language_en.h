@@ -520,5 +520,17 @@
 #ifndef MSG_DELTA_CALIBRATE_CENTER
   #define MSG_DELTA_CALIBRATE_CENTER          "Calibrate Center"
 #endif
+#ifndef MSG_INFO_MENU
+  #define MSG_INFO_MENU                       "About Printer"
+#endif
+#ifndef MSG_INFO_EXTRUDERS
+  #define MSG_INFO_EXTRUDERS                  "Extruders: " STRINGIFY(EXTRUDERS)
+#endif
+#ifndef MSG_INFO_BAUDRATE
+  #define MSG_INFO_BAUDRATE                   "Baud: " STRINGIFY(BAUDRATE)
+#endif
+#ifndef MSG_INFO_PROTOCOL
+  #define MSG_INFO_PROTOCOL                   "Protocol: " STRINGIFY(PROTOCOL_VERSION)
+#endif
 
 #endif // LANGUAGE_EN_H
