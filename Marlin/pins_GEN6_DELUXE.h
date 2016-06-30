@@ -26,8 +26,5 @@
 
 #include "pins_GEN6.h"
 
-#ifdef BOARD_NAME
-  #undef BOARD_NAME
-#endif
-
+#undef BOARD_NAME
 #define BOARD_NAME "Gen6 Deluxe"

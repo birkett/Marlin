@@ -30,10 +30,7 @@
 
 #include "pins_RAMPS_13.h"
 
-#ifdef BOARD_NAME
-  #undef BOARD_NAME
-#endif
-
+#undef BOARD_NAME
 #define BOARD_NAME "ZUM Mega 3D"
 
 #undef X_MAX_PIN
