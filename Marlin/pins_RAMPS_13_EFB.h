@@ -29,3 +29,9 @@
 #define IS_RAMPS_13
 
 #include "pins_RAMPS_14_EFB.h"
+
+#ifdef BOARD_NAME
+  #undef BOARD_NAME
+#endif
+
+#define BOARD_NAME "RAMPS 1.3 EFB"

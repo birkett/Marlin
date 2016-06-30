@@ -28,6 +28,8 @@
   #error "Oops!  Make sure you have 'Gen7' selected from the 'Tools -> Boards' menu."
 #endif
 
+#define BOARD_NAME "Gen7 v1.1 / 1.2"
+
 #ifndef GEN7_VERSION
   #define GEN7_VERSION 12 // v1.x
 #endif

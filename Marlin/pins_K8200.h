@@ -32,3 +32,9 @@
 
 #undef  DEFAULT_SOURCE_CODE_URL
 #define DEFAULT_SOURCE_CODE_URL "https://github.com/CONSULitAS/Marlin-K8200"
+
+#ifdef BOARD_NAME
+  #undef BOARD_NAME
+#endif
+
+#define BOARD_NAME "Velleman K8200"

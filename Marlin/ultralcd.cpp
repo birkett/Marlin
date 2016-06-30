@@ -1889,6 +1889,8 @@ static void lcd_status_screen() {
     MENU_ITEM(function, MSG_INFO_EXTRUDERS,       lcd_return_to_status); // Extruders: 2
     MENU_ITEM(function, MSG_INFO_BAUDRATE,        lcd_return_to_status); // Baud: 250000
     MENU_ITEM(function, MSG_INFO_PROTOCOL,        lcd_return_to_status); // Protocol: 1.0
+	MENU_ITEM(function, MSG_INFO_BOARD,           lcd_return_to_status); // Board:
+	MENU_ITEM(function, BOARD_NAME,               lcd_return_to_status); // MyPrinterController
     END_MENU();
   }
 

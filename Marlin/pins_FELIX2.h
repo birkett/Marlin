@@ -26,6 +26,12 @@
 
 #include "pins_RAMPS_14_EFB.h"
 
+#ifdef BOARD_NAME
+  #undef BOARD_NAME
+#endif
+
+#define BOARD_NAME "Felix 2.0+"
+
 #undef HEATER_1_PIN
 #define HEATER_1_PIN        7 // EXTRUDER 2
 

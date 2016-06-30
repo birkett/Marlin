@@ -31,3 +31,9 @@
 #endif
 
 #include "pins_SANGUINOLOLU_11.h"
+
+#ifdef BOARD_NAME
+  #undef BOARD_NAME
+#endif
+
+#define BOARD_NAME "Melzi"

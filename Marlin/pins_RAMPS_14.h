@@ -48,6 +48,8 @@
   #error "Oops!  Make sure you have 'Arduino Mega' selected from the 'Tools -> Boards' menu."
 #endif
 
+#define BOARD_NAME "RAMPS 1.4"
+
 #define LARGE_FLASH true
 
 #ifdef IS_RAMPS_13

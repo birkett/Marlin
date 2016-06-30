@@ -30,6 +30,8 @@
   #endif
 #endif
 
+#define BOARD_NAME      "Gen6"
+
 //x axis pins
 #define X_STEP_PIN      15
 #define X_DIR_PIN       18
