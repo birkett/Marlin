@@ -30,8 +30,5 @@
 
 #include "pins_RAMPS_14.h"
 
-#ifdef BOARD_NAME
-  #undef BOARD_NAME
-#endif
-
+#undef BOARD_NAME
 #define BOARD_NAME "RAMPS 1.4 EFB"

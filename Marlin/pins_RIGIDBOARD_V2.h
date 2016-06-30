@@ -26,10 +26,7 @@
 
 #include "pins_RIGIDBOARD.h"
 
-#ifdef BOARD_NAME
-  #undef BOARD_NAME
-#endif
-
+#undef BOARD_NAME
 #define BOARD_NAME "RigidBoard V2"
 
 // I2C based DAC like on the Printrboard REVF

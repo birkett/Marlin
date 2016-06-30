@@ -31,10 +31,7 @@
 
 #include "pins_RAMPS_14_EFB.h"
 
-#ifdef BOARD_NAME
-  #undef BOARD_NAME
-#endif
-
+#undef BOARD_NAME
 #define BOARD_NAME "MKS > v1.3"
 
 #undef HEATER_1_PIN

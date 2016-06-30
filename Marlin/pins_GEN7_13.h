@@ -29,8 +29,5 @@
 
 #include "pins_GEN7_12.h"
 
-#ifdef BOARD_NAME
-  #undef BOARD_NAME
-#endif
-
+#undef BOARD_NAME
 #define BOARD_NAME "Gen7 v1.3"

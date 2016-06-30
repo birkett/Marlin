@@ -28,8 +28,5 @@
 
 #include "pins_SANGUINOLOLU_11.h"
 
-#ifdef BOARD_NAME
-  #undef BOARD_NAME
-#endif
-
+#undef BOARD_NAME
 #define BOARD_NAME "Azteeg X1"

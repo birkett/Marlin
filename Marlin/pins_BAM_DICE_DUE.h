@@ -26,10 +26,7 @@
 
 #include "pins_RAMPS_14_EFB.h"
 
-#ifdef BOARD_NAME
-  #undef BOARD_NAME
-#endif
-
+#undef BOARD_NAME
 #define BOARD_NAME "2PrintBeta Due"
 
 #undef TEMP_0_PIN
