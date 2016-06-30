@@ -120,10 +120,13 @@ uint8_t lcdDrawUpdate = LCDVIEW_CLEAR_CALL_REDRAW; // Set when the LCD needs to 
   static void lcd_control_temperature_preheat_abs_settings_menu();
   static void lcd_control_motion_menu();
   static void lcd_control_volumetric_menu();
-  #ifdef PRINTCOUNTER
-  static void lcd_info_stats_menu();
+
+  #if ENABLED(LCD_INFO_MENU)
+    #ifdef PRINTCOUNTER
+      static void lcd_info_stats_menu();
+    #endif
+    static void lcd_info_menu();
   #endif
-  static void lcd_info_menu();
 
   #if HAS_LCD_CONTRAST
     static void lcd_set_contrast();
@@ -578,7 +581,9 @@ static void lcd_status_screen() {
       }
     #endif //SDSUPPORT
 
-	MENU_ITEM(submenu, MSG_INFO_MENU, lcd_info_menu);
+    #if ENABLED(LCD_INFO_MENU)
+      MENU_ITEM(submenu, MSG_INFO_MENU, lcd_info_menu);
+    #endif
 
     END_MENU();
   }
@@ -1920,28 +1925,29 @@ static void lcd_status_screen() {
   }
   #endif
 
-  /**
-   *
-   * "Printer Info" submenu
-   *
-   */
-  static void lcd_info_menu() {
-    START_MENU();
-    STATIC_ITEM(MSG_MARLIN);               // Marlin
-    STATIC_ITEM(SHORT_BUILD_VERSION);      // x.x.x-Branch
-    STATIC_ITEM(STRING_DISTRIBUTION_DATE); // YYYY-MM-DD HH:MM
-    STATIC_ITEM(MACHINE_NAME);             // My3DPrinter
-    STATIC_ITEM(WEBSITE_URL);              // www.my3dprinter.com
-    STATIC_ITEM(MSG_INFO_EXTRUDERS);       // Extruders: 2
-    STATIC_ITEM(MSG_INFO_BAUDRATE);        // Baud: 250000
-    STATIC_ITEM(MSG_INFO_PROTOCOL);        // Protocol: 1.0
-    STATIC_ITEM(MSG_INFO_BOARD);           // Board:
-    STATIC_ITEM(BOARD_NAME);               // MyPrinterController
-    #ifdef PRINTCOUNTER
-    MENU_ITEM(submenu,  MSG_INFO_STATS_MENU, lcd_info_stats_menu);  // Printer Statistics ->
-    #endif
-    END_MENU();
-  }
+  #if ENABLED(LCD_INFO_MENU)
+    /**
+     *
+     * "Printer Info" submenu
+     *
+     */
+    static void lcd_info_menu() {
+      START_MENU();
+      STATIC_ITEM(MSG_MARLIN);               // Marlin
+      STATIC_ITEM(SHORT_BUILD_VERSION);      // x.x.x-Branch
+      STATIC_ITEM(STRING_DISTRIBUTION_DATE); // YYYY-MM-DD HH:MM
+      STATIC_ITEM(MACHINE_NAME);             // My3DPrinter
+      STATIC_ITEM(WEBSITE_URL);              // www.my3dprinter.com
+      STATIC_ITEM(MSG_INFO_EXTRUDERS);       // Extruders: 2
+      STATIC_ITEM(MSG_INFO_BAUDRATE);        // Baud: 250000
+      STATIC_ITEM(MSG_INFO_PROTOCOL);        // Protocol: 1.0
+      STATIC_ITEM(MSG_INFO_BOARD);           // Board:
+      STATIC_ITEM(BOARD_NAME);               // MyPrinterController
+      #ifdef PRINTCOUNTER
+      MENU_ITEM(submenu,  MSG_INFO_STATS_MENU, lcd_info_stats_menu);  // Printer Statistics ->
+      #endif
+      END_MENU();
+    }
   #endif // LCD_INFO_MENU
 
   /**
