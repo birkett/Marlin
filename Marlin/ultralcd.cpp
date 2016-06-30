@@ -1901,6 +1901,7 @@ static void lcd_status_screen() {
      *
      */
     static void lcd_info_menu() {
+      if (LCD_CLICKED) lcd_return_to_status();
       START_MENU();
       STATIC_ITEM(MSG_MARLIN);               // Marlin
       STATIC_ITEM(SHORT_BUILD_VERSION);      // x.x.x-Branch
