@@ -523,6 +523,9 @@
 #ifndef MSG_INFO_MENU
   #define MSG_INFO_MENU                       "About Printer"
 #endif
+#ifndef MSG_INFO_STATS_MENU
+  #define MSG_INFO_STATS_MENU                 "Printer Stats"
+#endif
 #ifndef MSG_INFO_EXTRUDERS
   #define MSG_INFO_EXTRUDERS                  "Extruders: " STRINGIFY(EXTRUDERS)
 #endif
@@ -534,6 +537,15 @@
 #endif
 #ifndef MSG_INFO_BOARD
   #define MSG_INFO_BOARD                      "Board:"
+#endif
+#ifndef MSG_TOTAL_PRINTS
+  #define MSG_TOTAL_PRINTS                    "Total Prints:"
+#endif
+#ifndef MSG_FINISHED_PRINTS
+  #define MSG_FINISHED_PRINTS                 "Finished Prints:"
+#endif
+#ifndef MSG_PRINT_TIME
+  #define MSG_PRINT_TIME                      "Total Print Time:"
 #endif
 
 #endif // LANGUAGE_EN_H

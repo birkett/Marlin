@@ -29,6 +29,10 @@
 #include "stepper.h"
 #include "configuration_store.h"
 
+#ifdef PRINTCOUNTER
+  #include "printcounter.h"
+#endif
+
 int plaPreheatHotendTemp;
 int plaPreheatHPBTemp;
 int plaPreheatFanSpeed;
@@ -116,6 +120,9 @@ uint8_t lcdDrawUpdate = LCDVIEW_CLEAR_CALL_REDRAW; // Set when the LCD needs to 
   static void lcd_control_temperature_preheat_abs_settings_menu();
   static void lcd_control_motion_menu();
   static void lcd_control_volumetric_menu();
+  #ifdef PRINTCOUNTER
+  static void lcd_info_stats_menu();
+  #endif
   static void lcd_info_menu();
 
   #if HAS_LCD_CONTRAST
@@ -1873,6 +1880,30 @@ static void lcd_status_screen() {
 
   #endif //SDSUPPORT
 
+  #ifdef PRINTCOUNTER
+  /**
+   *
+   * Printer Info > Stastics submenu
+   *
+   */
+  static void lcd_info_stats_menu()
+  {
+    PrintCounter print_job_counter = PrintCounter();
+    print_job_counter.loadStats();
+    printStatistics stats = print_job_counter.getStats();
+	
+    START_MENU();
+    MENU_ITEM(back,     MSG_INFO_MENU                               ); // <- Back
+    MENU_ITEM(function, MSG_TOTAL_PRINTS,     lcd_goto_previous_menu); // Total Prints:
+    MENU_ITEM(function, stats.totalPrints,    lcd_goto_previous_menu); // 999
+    MENU_ITEM(function, MSG_FINISHED_PRINTS,  lcd_goto_previous_menu); // Finished Prints:
+    MENU_ITEM(function, stats.finishedPrints, lcd_goto_previous_menu)  // 666
+    MENU_ITEM(function, MSG_PRINT_TIME,       lcd_goto_previous_menu); // Total Print Time:
+    MENU_ITEM(function, stats.printTime,      lcd_goto_previous_menu); // 123456
+    END_MENU();
+  }
+  #endif
+
   /**
    *
    * "Printer Info" submenu
@@ -1881,6 +1912,7 @@ static void lcd_status_screen() {
   static void lcd_info_menu()
   {
     START_MENU();
+    MENU_ITEM(back,     MSG_MAIN                                      ); // <- Back
     MENU_ITEM(function, MSG_MARLIN,               lcd_return_to_status); // Marlin
     MENU_ITEM(function, SHORT_BUILD_VERSION,      lcd_return_to_status); // x.x.x-Branch
     MENU_ITEM(function, STRING_DISTRIBUTION_DATE, lcd_return_to_status); // YYYY-MM-DD HH:MM
@@ -1889,8 +1921,11 @@ static void lcd_status_screen() {
     MENU_ITEM(function, MSG_INFO_EXTRUDERS,       lcd_return_to_status); // Extruders: 2
     MENU_ITEM(function, MSG_INFO_BAUDRATE,        lcd_return_to_status); // Baud: 250000
     MENU_ITEM(function, MSG_INFO_PROTOCOL,        lcd_return_to_status); // Protocol: 1.0
-	MENU_ITEM(function, MSG_INFO_BOARD,           lcd_return_to_status); // Board:
-	MENU_ITEM(function, BOARD_NAME,               lcd_return_to_status); // MyPrinterController
+    MENU_ITEM(function, MSG_INFO_BOARD,           lcd_return_to_status); // Board:
+    MENU_ITEM(function, BOARD_NAME,               lcd_return_to_status); // MyPrinterController
+    #ifdef PRINTCOUNTER
+    MENU_ITEM(submenu,  MSG_INFO_STATS_MENU,      lcd_info_stats_menu);  // Printer Statistics ->
+    #endif
     END_MENU();
   }
 
