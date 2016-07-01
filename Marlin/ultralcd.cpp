@@ -125,6 +125,7 @@ uint8_t lcdDrawUpdate = LCDVIEW_CLEAR_CALL_REDRAW; // Set when the LCD needs to 
     #ifdef PRINTCOUNTER
       static void lcd_info_stats_menu();
     #endif
+	static void lcd_info_thermistors_menu();
     static void lcd_info_menu();
   #endif
 
@@ -1901,31 +1902,70 @@ static void lcd_status_screen() {
 
   #endif //SDSUPPORT
 
-  #ifdef PRINTCOUNTER
-  /**
-   *
-   * Printer Info > Stastics submenu
-   *
-   */
-  static void lcd_info_stats_menu()
-  {
-    PrintCounter print_job_counter = PrintCounter();
-    print_job_counter.loadStats();
-    printStatistics stats = print_job_counter.getStats();
-	
-    START_MENU();
-    MENU_ITEM(back,     MSG_INFO_MENU                               ); // <- Back
-    MENU_ITEM(function, MSG_TOTAL_PRINTS,     lcd_goto_previous_menu); // Total Prints:
-    MENU_ITEM(function, stats.totalPrints,    lcd_goto_previous_menu); // 999
-    MENU_ITEM(function, MSG_FINISHED_PRINTS,  lcd_goto_previous_menu); // Finished Prints:
-    MENU_ITEM(function, stats.finishedPrints, lcd_goto_previous_menu)  // 666
-    MENU_ITEM(function, MSG_PRINT_TIME,       lcd_goto_previous_menu); // Total Print Time:
-    MENU_ITEM(function, stats.printTime,      lcd_goto_previous_menu); // 123456
-    END_MENU();
-  }
-  #endif
-
   #if ENABLED(LCD_INFO_MENU)
+    #ifdef PRINTCOUNTER
+      /**
+       *
+       * Printer Info > Stastics submenu
+       *
+       */
+      static void lcd_info_stats_menu() {
+        PrintCounter print_job_counter = PrintCounter();
+        print_job_counter.loadStats();
+        printStatistics stats = print_job_counter.getStats();
+
+        if (LCD_CLICKED) lcd_goto_previous_menu(true);
+        START_MENU();
+        STATIC_ITEM(MSG_TOTAL_PRINTS    ); // Total Prints:
+        STATIC_ITEM(stats.totalPrints   ); // 999
+        STATIC_ITEM(MSG_FINISHED_PRINTS ); // Finished Prints:
+        STATIC_ITEM(stats.finishedPrints); // 666
+        STATIC_ITEM(MSG_PRINT_TIME      ); // Total Print Time:
+        STATIC_ITEM(stats.printTime     ); // 123456
+        END_MENU();
+      }
+    #endif
+  
+    /**
+     *
+     * Printer Info > Thermistors
+     *
+     */
+    static void lcd_info_thermistors_menu() {
+	  if (LCD_CLICKED) lcd_goto_previous_menu(true);
+	  #define THERMISTOR_ID TEMP_SENSOR_0
+      #include "thermistornames.h"
+      STATIC_ITEM("T0: " THERMISTOR_NAME);
+
+      #if TEMP_SENSOR_1 != 0
+        #undef THERMISTOR_ID
+        #define THERMISTOR_ID TEMP_SENSOR_1
+        #include "thermistornames.h"
+        STATIC_ITEM("T1: " THERMISTOR_NAME);
+      #endif
+
+      #if TEMP_SENSOR_2 != 0
+        #undef THERMISTOR_ID
+        #define THERMISTOR_ID TEMP_SENSOR_2
+        #include "thermistornames.h"
+        STATIC_ITEM("T2: " THERMISTOR_NAME);
+      #endif
+
+      #if TEMP_SENSOR_3 != 0
+        #undef THERMISTOR_ID
+        #define THERMISTOR_ID TEMP_SENSOR_3
+        #include "thermistornames.h"
+        STATIC_ITEM("T3: " THERMISTOR_NAME);
+      #endif
+	  
+	  #if TEMP_SENSOR_BED != 0-3
+	    #undef THERMISTOR_ID
+		#define THERMISTOR_ID TEMP_SENSOR_BED
+		#include "thermistornames.h"
+		STATIC_ITEM("TBed:" THERMISTOR_NAME);
+	  #endif
+    }
+
     /**
      *
      * "Printer Info" submenu
@@ -1944,8 +1984,9 @@ static void lcd_status_screen() {
       STATIC_ITEM(MSG_INFO_PROTOCOL);        // Protocol: 1.0
       STATIC_ITEM(MSG_INFO_BOARD);           // Board:
       STATIC_ITEM(BOARD_NAME);               // MyPrinterController
+	  MENU_ITEM(submenu, MSG_INFO_THERMISTOR_MENU, lcd_info_thermistors_menu); // Thermistors ->
       #ifdef PRINTCOUNTER
-      MENU_ITEM(submenu,  MSG_INFO_STATS_MENU, lcd_info_stats_menu);  // Printer Statistics ->
+      MENU_ITEM(submenu, MSG_INFO_STATS_MENU, lcd_info_stats_menu);  // Printer Statistics ->
       #endif
       END_MENU();
     }

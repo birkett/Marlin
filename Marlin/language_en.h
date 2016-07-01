@@ -526,6 +526,9 @@
 #ifndef MSG_INFO_STATS_MENU
   #define MSG_INFO_STATS_MENU                 "Printer Stats"
 #endif
+#ifndef MSG_INFO_STATS_MENU
+  #define MSG_INFO_STATS_MENU                 "Thermistors"
+#endif
 #ifndef MSG_INFO_EXTRUDERS
   #define MSG_INFO_EXTRUDERS                  "Extruders: " STRINGIFY(EXTRUDERS)
 #endif
