@@ -24,7 +24,6 @@
  * Gen6 Deluxe pin assignments
  */
 
-#include "pins_GEN6.h"
-
-#undef BOARD_NAME
 #define BOARD_NAME "Gen6 Deluxe"
+
+#include "pins_GEN6.h"

@@ -24,10 +24,9 @@
  * BAM&DICE Due (Arduino Mega) pin assignments
  */
 
-#include "pins_RAMPS_14_EFB.h"
-
-#undef BOARD_NAME
 #define BOARD_NAME "2PrintBeta Due"
+
+#include "pins_RAMPS_14_EFB.h"
 
 #undef TEMP_0_PIN
 #undef TEMP_1_PIN

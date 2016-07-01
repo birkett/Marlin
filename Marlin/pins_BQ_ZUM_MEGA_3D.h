@@ -28,10 +28,9 @@
   #error "Oops! Make sure you have 'Arduino Mega 2560' selected from the 'Tools -> Boards' menu."
 #endif
 
-#include "pins_RAMPS_13.h"
-
-#undef BOARD_NAME
 #define BOARD_NAME "ZUM Mega 3D"
+
+#include "pins_RAMPS_13.h"
 
 #undef X_MAX_PIN
 #define X_MAX_PIN         79 //  2

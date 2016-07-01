@@ -24,10 +24,9 @@
  * AZTEEG_X3 Arduino Mega with RAMPS v1.4 pin assignments
  */
 
-#include "pins_RAMPS_14_EFB.h"
-
-#undef BOARD_NAME
 #define BOARD_NAME "Azteeg X3"
+
+#include "pins_RAMPS_14_EFB.h"
 
 #if ENABLED(VIKI2) || ENABLED(miniVIKI)
 

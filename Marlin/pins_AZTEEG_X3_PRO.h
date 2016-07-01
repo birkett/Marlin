@@ -24,10 +24,9 @@
  * AZTEEG_X3_PRO (Arduino Mega) pin assignments
  */
 
-#include "pins_RAMPS_14.h"
-
-#undef BOARD_NAME
 #define BOARD_NAME "Azteeg X3 Pro"
+
+#include "pins_RAMPS_14.h"
 
 #undef FAN_PIN
 #define FAN_PIN             6 //Part Cooling System
