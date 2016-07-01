@@ -126,6 +126,7 @@ uint8_t lcdDrawUpdate = LCDVIEW_CLEAR_CALL_REDRAW; // Set when the LCD needs to 
       static void lcd_info_stats_menu();
     #endif
 	static void lcd_info_thermistors_menu();
+	static void lcd_info_board_menu();
     static void lcd_info_menu();
   #endif
 
@@ -1933,6 +1934,7 @@ static void lcd_status_screen() {
      */
     static void lcd_info_thermistors_menu() {
 	  if (LCD_CLICKED) lcd_goto_previous_menu(true);
+      START_MENU();
 	  #define THERMISTOR_ID TEMP_SENSOR_0
       #include "thermistornames.h"
       STATIC_ITEM("T0: " THERMISTOR_NAME);
@@ -1964,6 +1966,21 @@ static void lcd_status_screen() {
 		#include "thermistornames.h"
 		STATIC_ITEM("TBed:" THERMISTOR_NAME);
 	  #endif
+      END_MENU();
+    }
+
+    /**
+     *
+     * Printer Info > Board Info
+     *
+     */
+    static void lcd_info_board_menu() {
+      if (LCD_CLICKED) lcd_goto_previous_menu(true);
+      START_MENU();
+      STATIC_ITEM(BOARD_NAME                                         ); // MyPrinterController
+      STATIC_ITEM(MSG_INFO_BAUDRATE  ": " STRINGIFY(BAUDRATE)        ); // Baud: 250000
+      STATIC_ITEM(MSG_INFO_PROTOCOL  ": " STRINGIFY(PROTOCOL_VERSION)); // Protocol: 1.0
+      END_MENU();
     }
 
     /**
@@ -1974,19 +1991,17 @@ static void lcd_status_screen() {
     static void lcd_info_menu() {
       if (LCD_CLICKED) lcd_return_to_status();
       START_MENU();
-      STATIC_ITEM(MSG_MARLIN);               // Marlin
-      STATIC_ITEM(SHORT_BUILD_VERSION);      // x.x.x-Branch
-      STATIC_ITEM(STRING_DISTRIBUTION_DATE); // YYYY-MM-DD HH:MM
-      STATIC_ITEM(MACHINE_NAME);             // My3DPrinter
-      STATIC_ITEM(WEBSITE_URL);              // www.my3dprinter.com
-      STATIC_ITEM(MSG_INFO_EXTRUDERS);       // Extruders: 2
-      STATIC_ITEM(MSG_INFO_BAUDRATE);        // Baud: 250000
-      STATIC_ITEM(MSG_INFO_PROTOCOL);        // Protocol: 1.0
-      STATIC_ITEM(MSG_INFO_BOARD);           // Board:
-      STATIC_ITEM(BOARD_NAME);               // MyPrinterController
-	  MENU_ITEM(submenu, MSG_INFO_THERMISTOR_MENU, lcd_info_thermistors_menu); // Thermistors ->
+      STATIC_ITEM(MSG_MARLIN                                  ); // Marlin
+      STATIC_ITEM(SHORT_BUILD_VERSION                         ); // x.x.x-Branch
+      STATIC_ITEM(STRING_DISTRIBUTION_DATE                    ); // YYYY-MM-DD HH:MM
+      STATIC_ITEM(MACHINE_NAME                                ); // My3DPrinter
+      STATIC_ITEM(WEBSITE_URL                                 ); // www.my3dprinter.com
+      STATIC_ITEM(MSG_INFO_EXTRUDERS ": " STRINGIFY(EXTRUDERS)); // Extruders: 2
+
+      MENU_ITEM(submenu, MSG_INFO_BOARD_MENU, lcd_info_board_menu           ); // Board Info ->
+      MENU_ITEM(submenu, MSG_INFO_THERMISTOR_MENU, lcd_info_thermistors_menu); // Thermistors ->
       #ifdef PRINTCOUNTER
-      MENU_ITEM(submenu, MSG_INFO_STATS_MENU, lcd_info_stats_menu);  // Printer Statistics ->
+        MENU_ITEM(submenu, MSG_INFO_STATS_MENU, lcd_info_stats_menu         ); // Printer Statistics ->
       #endif
       END_MENU();
     }

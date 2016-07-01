@@ -526,17 +526,20 @@
 #ifndef MSG_INFO_STATS_MENU
   #define MSG_INFO_STATS_MENU                 "Printer Stats"
 #endif
+#ifndef MSG_INFO_BOARD_MENU
+  #define MSG_INFO_BOARD_MENU                 "Board Info"
+#endif
 #ifndef MSG_INFO_STATS_MENU
   #define MSG_INFO_STATS_MENU                 "Thermistors"
 #endif
 #ifndef MSG_INFO_EXTRUDERS
-  #define MSG_INFO_EXTRUDERS                  "Extruders: " STRINGIFY(EXTRUDERS)
+  #define MSG_INFO_EXTRUDERS                  "Extruders"
 #endif
 #ifndef MSG_INFO_BAUDRATE
-  #define MSG_INFO_BAUDRATE                   "Baud: " STRINGIFY(BAUDRATE)
+  #define MSG_INFO_BAUDRATE                   "Baud"
 #endif
 #ifndef MSG_INFO_PROTOCOL
-  #define MSG_INFO_PROTOCOL                   "Protocol: " STRINGIFY(PROTOCOL_VERSION)
+  #define MSG_INFO_PROTOCOL                   "Protocol"
 #endif
 #ifndef MSG_INFO_BOARD
   #define MSG_INFO_BOARD                      "Board:"
