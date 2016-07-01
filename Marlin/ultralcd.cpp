@@ -1938,12 +1938,16 @@ static void lcd_status_screen() {
 	  #define THERMISTOR_ID TEMP_SENSOR_0
       #include "thermistornames.h"
       STATIC_ITEM("T0: " THERMISTOR_NAME);
+      STATIC_ITEM("    " MSG_MIN_TEMP ": " STRINGIFY(HEATER_0_MINTEMP));
+      STATIC_ITEM("    " MSG_MAX_TEMP ": " STRINGIFY(HEATER_0_MAXTEMP));
 
       #if TEMP_SENSOR_1 != 0
         #undef THERMISTOR_ID
         #define THERMISTOR_ID TEMP_SENSOR_1
         #include "thermistornames.h"
         STATIC_ITEM("T1: " THERMISTOR_NAME);
+        STATIC_ITEM("    " MSG_MIN_TEMP ": " STRINGIFY(HEATER_1_MINTEMP));
+        STATIC_ITEM("    " MSG_MAX_TEMP ": " STRINGIFY(HEATER_1_MAXTEMP));
       #endif
 
       #if TEMP_SENSOR_2 != 0
@@ -1951,6 +1955,8 @@ static void lcd_status_screen() {
         #define THERMISTOR_ID TEMP_SENSOR_2
         #include "thermistornames.h"
         STATIC_ITEM("T2: " THERMISTOR_NAME);
+        STATIC_ITEM("    " MSG_MIN_TEMP ": " STRINGIFY(HEATER_2_MINTEMP));
+        STATIC_ITEM("    " MSG_MAX_TEMP ": " STRINGIFY(HEATER_2_MAXTEMP));
       #endif
 
       #if TEMP_SENSOR_3 != 0
@@ -1958,6 +1964,8 @@ static void lcd_status_screen() {
         #define THERMISTOR_ID TEMP_SENSOR_3
         #include "thermistornames.h"
         STATIC_ITEM("T3: " THERMISTOR_NAME);
+        STATIC_ITEM("    " MSG_MIN_TEMP ": " STRINGIFY(HEATER_3_MINTEMP));
+        STATIC_ITEM("    " MSG_MAX_TEMP ": " STRINGIFY(HEATER_3_MAXTEMP));
       #endif
 	  
 	  #if TEMP_SENSOR_BED != 0-3
@@ -1965,6 +1973,8 @@ static void lcd_status_screen() {
 		#define THERMISTOR_ID TEMP_SENSOR_BED
 		#include "thermistornames.h"
 		STATIC_ITEM("TBed:" THERMISTOR_NAME);
+        STATIC_ITEM("    " MSG_MIN_TEMP ": " STRINGIFY(BED_MINTEMP));
+        STATIC_ITEM("    " MSG_MAX_TEMP ": " STRINGIFY(BED_MAXTEMP));
 	  #endif
       END_MENU();
     }

@@ -553,5 +553,11 @@
 #ifndef MSG_PRINT_TIME
   #define MSG_PRINT_TIME                      "Total Print Time:"
 #endif
+#ifndef MSG_MIN_TEMP
+  #define MSG_MIN_TEMP                        "Min Temp"
+#endif
+#ifndef MSG_MAX_TEMP
+  #define MSG_MAX_TEMP                        "Max Temp"
+#endif
 
 #endif // LANGUAGE_EN_H
