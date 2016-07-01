@@ -125,8 +125,8 @@ uint8_t lcdDrawUpdate = LCDVIEW_CLEAR_CALL_REDRAW; // Set when the LCD needs to 
     #ifdef PRINTCOUNTER
       static void lcd_info_stats_menu();
     #endif
-	static void lcd_info_thermistors_menu();
-	static void lcd_info_board_menu();
+  static void lcd_info_thermistors_menu();
+  static void lcd_info_board_menu();
     static void lcd_info_menu();
   #endif
 
@@ -1933,9 +1933,9 @@ static void lcd_status_screen() {
      *
      */
     static void lcd_info_thermistors_menu() {
-	  if (LCD_CLICKED) lcd_goto_previous_menu(true);
+    if (LCD_CLICKED) lcd_goto_previous_menu(true);
       START_MENU();
-	  #define THERMISTOR_ID TEMP_SENSOR_0
+    #define THERMISTOR_ID TEMP_SENSOR_0
       #include "thermistornames.h"
       STATIC_ITEM("T0: " THERMISTOR_NAME);
       STATIC_ITEM("    " MSG_INFO_MIN_TEMP ": " STRINGIFY(HEATER_0_MINTEMP));
@@ -1967,15 +1967,15 @@ static void lcd_status_screen() {
         STATIC_ITEM("    " MSG_INFO_MIN_TEMP ": " STRINGIFY(HEATER_3_MINTEMP));
         STATIC_ITEM("    " MSG_INFO_MAX_TEMP ": " STRINGIFY(HEATER_3_MAXTEMP));
       #endif
-	  
-	  #if TEMP_SENSOR_BED != 0-3
-	    #undef THERMISTOR_ID
-		#define THERMISTOR_ID TEMP_SENSOR_BED
-		#include "thermistornames.h"
-		STATIC_ITEM("TBed:" THERMISTOR_NAME);
+    
+    #if TEMP_SENSOR_BED != 0-3
+      #undef THERMISTOR_ID
+    #define THERMISTOR_ID TEMP_SENSOR_BED
+    #include "thermistornames.h"
+    STATIC_ITEM("TBed:" THERMISTOR_NAME);
         STATIC_ITEM("    " MSG_INFO_MIN_TEMP ": " STRINGIFY(BED_MINTEMP));
         STATIC_ITEM("    " MSG_INFO_MAX_TEMP ": " STRINGIFY(BED_MAXTEMP));
-	  #endif
+    #endif
       END_MENU();
     }
 
@@ -1990,13 +1990,13 @@ static void lcd_status_screen() {
       STATIC_ITEM(BOARD_NAME                                        ); // MyPrinterController
       STATIC_ITEM(MSG_INFO_BAUDRATE ": " STRINGIFY(BAUDRATE)        ); // Baud: 250000
       STATIC_ITEM(MSG_INFO_PROTOCOL ": " STRINGIFY(PROTOCOL_VERSION)); // Protocol: 1.0
-	  #ifdef POWER_SUPPLY
-	    #if (POWER_SUPPLY == 1)
-	      STATIC_ITEM(MSG_INFO_PSU ": ATX");  // Power Supply: ATX
-	    #elif (POWER_SUPPLY == 2)
-	      STATIC_ITEM(MSG_INFO_PSU ": XBox"); // Power Supply: XBox
-	    #endif
-	  #endif // POWER_SUPPLY
+      #ifdef POWER_SUPPLY
+        #if (POWER_SUPPLY == 1)
+          STATIC_ITEM(MSG_INFO_PSU ": ATX");  // Power Supply: ATX
+        #elif (POWER_SUPPLY == 2)
+          STATIC_ITEM(MSG_INFO_PSU ": XBox"); // Power Supply: XBox
+        #endif
+      #endif // POWER_SUPPLY
       END_MENU();
     }
 
