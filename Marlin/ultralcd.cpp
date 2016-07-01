@@ -1917,12 +1917,12 @@ static void lcd_status_screen() {
 
         if (LCD_CLICKED) lcd_goto_previous_menu(true);
         START_MENU();
-        STATIC_ITEM(MSG_TOTAL_PRINTS    ); // Total Prints:
-        STATIC_ITEM(stats.totalPrints   ); // 999
-        STATIC_ITEM(MSG_FINISHED_PRINTS ); // Finished Prints:
-        STATIC_ITEM(stats.finishedPrints); // 666
-        STATIC_ITEM(MSG_PRINT_TIME      ); // Total Print Time:
-        STATIC_ITEM(stats.printTime     ); // 123456
+        STATIC_ITEM(MSG_INFO_TOTAL_PRINTS ": "   ); // Total Prints:
+        STATIC_ITEM(stats.totalPrints            ); // 999
+        STATIC_ITEM(MSG_INFO_FINISHED_PRINTS ": "); // Finished Prints:
+        STATIC_ITEM(stats.finishedPrints         ); // 666
+        STATIC_ITEM(MSG_INFO_PRINT_TIME ": "     ); // Total Print Time:
+        STATIC_ITEM(stats.printTime              ); // 123456
         END_MENU();
       }
     #endif
@@ -1938,16 +1938,16 @@ static void lcd_status_screen() {
 	  #define THERMISTOR_ID TEMP_SENSOR_0
       #include "thermistornames.h"
       STATIC_ITEM("T0: " THERMISTOR_NAME);
-      STATIC_ITEM("    " MSG_MIN_TEMP ": " STRINGIFY(HEATER_0_MINTEMP));
-      STATIC_ITEM("    " MSG_MAX_TEMP ": " STRINGIFY(HEATER_0_MAXTEMP));
+      STATIC_ITEM("    " MSG_INFO_MIN_TEMP ": " STRINGIFY(HEATER_0_MINTEMP));
+      STATIC_ITEM("    " MSG_INFO_MAX_TEMP ": " STRINGIFY(HEATER_0_MAXTEMP));
 
       #if TEMP_SENSOR_1 != 0
         #undef THERMISTOR_ID
         #define THERMISTOR_ID TEMP_SENSOR_1
         #include "thermistornames.h"
         STATIC_ITEM("T1: " THERMISTOR_NAME);
-        STATIC_ITEM("    " MSG_MIN_TEMP ": " STRINGIFY(HEATER_1_MINTEMP));
-        STATIC_ITEM("    " MSG_MAX_TEMP ": " STRINGIFY(HEATER_1_MAXTEMP));
+        STATIC_ITEM("    " MSG_INFO_MIN_TEMP ": " STRINGIFY(HEATER_1_MINTEMP));
+        STATIC_ITEM("    " MSG_INFO_MAX_TEMP ": " STRINGIFY(HEATER_1_MAXTEMP));
       #endif
 
       #if TEMP_SENSOR_2 != 0
@@ -1955,8 +1955,8 @@ static void lcd_status_screen() {
         #define THERMISTOR_ID TEMP_SENSOR_2
         #include "thermistornames.h"
         STATIC_ITEM("T2: " THERMISTOR_NAME);
-        STATIC_ITEM("    " MSG_MIN_TEMP ": " STRINGIFY(HEATER_2_MINTEMP));
-        STATIC_ITEM("    " MSG_MAX_TEMP ": " STRINGIFY(HEATER_2_MAXTEMP));
+        STATIC_ITEM("    " MSG_INFO_MIN_TEMP ": " STRINGIFY(HEATER_2_MINTEMP));
+        STATIC_ITEM("    " MSG_INFO_MAX_TEMP ": " STRINGIFY(HEATER_2_MAXTEMP));
       #endif
 
       #if TEMP_SENSOR_3 != 0
@@ -1964,8 +1964,8 @@ static void lcd_status_screen() {
         #define THERMISTOR_ID TEMP_SENSOR_3
         #include "thermistornames.h"
         STATIC_ITEM("T3: " THERMISTOR_NAME);
-        STATIC_ITEM("    " MSG_MIN_TEMP ": " STRINGIFY(HEATER_3_MINTEMP));
-        STATIC_ITEM("    " MSG_MAX_TEMP ": " STRINGIFY(HEATER_3_MAXTEMP));
+        STATIC_ITEM("    " MSG_INFO_MIN_TEMP ": " STRINGIFY(HEATER_3_MINTEMP));
+        STATIC_ITEM("    " MSG_INFO_MAX_TEMP ": " STRINGIFY(HEATER_3_MAXTEMP));
       #endif
 	  
 	  #if TEMP_SENSOR_BED != 0-3
@@ -1973,8 +1973,8 @@ static void lcd_status_screen() {
 		#define THERMISTOR_ID TEMP_SENSOR_BED
 		#include "thermistornames.h"
 		STATIC_ITEM("TBed:" THERMISTOR_NAME);
-        STATIC_ITEM("    " MSG_MIN_TEMP ": " STRINGIFY(BED_MINTEMP));
-        STATIC_ITEM("    " MSG_MAX_TEMP ": " STRINGIFY(BED_MAXTEMP));
+        STATIC_ITEM("    " MSG_INFO_MIN_TEMP ": " STRINGIFY(BED_MINTEMP));
+        STATIC_ITEM("    " MSG_INFO_MAX_TEMP ": " STRINGIFY(BED_MAXTEMP));
 	  #endif
       END_MENU();
     }
@@ -1987,9 +1987,16 @@ static void lcd_status_screen() {
     static void lcd_info_board_menu() {
       if (LCD_CLICKED) lcd_goto_previous_menu(true);
       START_MENU();
-      STATIC_ITEM(BOARD_NAME                                         ); // MyPrinterController
-      STATIC_ITEM(MSG_INFO_BAUDRATE  ": " STRINGIFY(BAUDRATE)        ); // Baud: 250000
-      STATIC_ITEM(MSG_INFO_PROTOCOL  ": " STRINGIFY(PROTOCOL_VERSION)); // Protocol: 1.0
+      STATIC_ITEM(BOARD_NAME                                        ); // MyPrinterController
+      STATIC_ITEM(MSG_INFO_BAUDRATE ": " STRINGIFY(BAUDRATE)        ); // Baud: 250000
+      STATIC_ITEM(MSG_INFO_PROTOCOL ": " STRINGIFY(PROTOCOL_VERSION)); // Protocol: 1.0
+	  #ifdef POWER_SUPPLY
+	    #if (POWER_SUPPLY == 1)
+	      STATIC_ITEM(MSG_INFO_PSU ": ATX");  // Power Supply: ATX
+	    #elif (POWER_SUPPLY == 2)
+	      STATIC_ITEM(MSG_INFO_PSU ": XBox"); // Power Supply: XBox
+	    #endif
+	  #endif // POWER_SUPPLY
       END_MENU();
     }
 

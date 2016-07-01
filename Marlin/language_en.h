@@ -529,8 +529,8 @@
 #ifndef MSG_INFO_BOARD_MENU
   #define MSG_INFO_BOARD_MENU                 "Board Info"
 #endif
-#ifndef MSG_INFO_STATS_MENU
-  #define MSG_INFO_STATS_MENU                 "Thermistors"
+#ifndef MSG_INFO_THERMISTOR_MENU
+  #define MSG_INFO_THERMISTOR_MENU            "Thermistors"
 #endif
 #ifndef MSG_INFO_EXTRUDERS
   #define MSG_INFO_EXTRUDERS                  "Extruders"
@@ -541,23 +541,23 @@
 #ifndef MSG_INFO_PROTOCOL
   #define MSG_INFO_PROTOCOL                   "Protocol"
 #endif
-#ifndef MSG_INFO_BOARD
-  #define MSG_INFO_BOARD                      "Board:"
+#ifndef MSG_INFO_TOTAL_PRINTS
+  #define MSG_INFO_TOTAL_PRINTS               "Total Prints"
 #endif
-#ifndef MSG_TOTAL_PRINTS
-  #define MSG_TOTAL_PRINTS                    "Total Prints:"
+#ifndef MSG_INFO_FINISHED_PRINTS
+  #define MSG_INFO_FINISHED_PRINTS            "Finished Prints"
 #endif
-#ifndef MSG_FINISHED_PRINTS
-  #define MSG_FINISHED_PRINTS                 "Finished Prints:"
+#ifndef MSG_INFO_PRINT_TIME
+  #define MSG_INFO_PRINT_TIME                 "Total Print Time"
 #endif
-#ifndef MSG_PRINT_TIME
-  #define MSG_PRINT_TIME                      "Total Print Time:"
+#ifndef MSG_INFO_MIN_TEMP
+  #define MSG_INFO_MIN_TEMP                   "Min Temp"
 #endif
-#ifndef MSG_MIN_TEMP
-  #define MSG_MIN_TEMP                        "Min Temp"
+#ifndef MSG_INFO_MAX_TEMP
+  #define MSG_INFO_MAX_TEMP                   "Max Temp"
 #endif
-#ifndef MSG_MAX_TEMP
-  #define MSG_MAX_TEMP                        "Max Temp"
+#ifndef MSG_INFO_PSU
+  #define MSG_INFO_PSU                        "Power Supply"
 #endif
 
 #endif // LANGUAGE_EN_H
