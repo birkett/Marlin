@@ -26,6 +26,9 @@
 
 #include "pins_RAMPS_14_EFB.h"
 
+#undef BOARD_NAME
+#define BOARD_NAME "Azteeg X3"
+
 #if ENABLED(VIKI2) || ENABLED(miniVIKI)
 
   #undef DOGLCD_A0
